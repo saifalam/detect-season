@@ -1,7 +1,6 @@
 import './SeasonDisplay.css';
 import React from 'react';
 
-
 // provides necessary data to dispaly on the screen
 const seasonConfig = {
     summer: {
@@ -16,10 +15,10 @@ const seasonConfig = {
 
 /**  
  * Determine the current season
- * input @lat = Curent position latitude
- * input @month = Running month as a number (like 1-12)
- * @return current season
- **/ 
+ * input  @lat = Curent position latitude
+ * input  @month = Running month as a number (like 1 to 12)
+ * output @return current season
+ */ 
 const getSeason = (lat, month) => {
     if(month > 2 && month < 9) {
         return lat > 0 ? 'summer': 'winter';
@@ -31,7 +30,6 @@ const getSeason = (lat, month) => {
 const SeasonDisplay = (props) => {
 
     const season = getSeason(props.lat, new Date().getMonth());
-    console.log(season);
     const {text, iconName} = seasonConfig[season];
     return (
         <div className= {`season-dispaly ${season}`} >
