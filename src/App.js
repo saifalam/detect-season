@@ -5,16 +5,14 @@ import "semantic-ui-css/semantic.min.css";
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {lat: null,err: '' };
-    }
+    //Bable will generate necessary constructor and put state inside. 
+    state = {lat: null,err: '' };
 
     componentDidMount() {
         console.log("Initial loading");
         window.navigator.geolocation.getCurrentPosition(
-            position => this.setState({lat: position.coords.latitude }),
-            err =>this.setState({err: err.message })
+            position => this.setState({ lat: position.coords.latitude }),
+            err =>this.setState({ err: err.message })
         );
     }
 
@@ -24,7 +22,7 @@ class App extends Component {
             showError = ( <div className="ui basic red button" ><h1>Error: {this.state.err}</h1></div> );     
         }
         if(this.state.err && !this.state.lat) {
-            return (<SeasonDisplay> {showError} </SeasonDisplay>);
+            return <div>{showError}</div>;
         }
         if(!this.state.err && this.state.lat) {
             return (<SeasonDisplay> lat={this.state.lat} </SeasonDisplay>);
