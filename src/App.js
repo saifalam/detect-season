@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import SeasonDisplay from './SeasonDisplay';
+import Loader from "./Loader";
+import "semantic-ui-css/semantic.min.css";
 
 class App extends Component {
 
@@ -21,13 +24,13 @@ class App extends Component {
             showError = ( <div className="ui basic red button" ><h1>Error: {this.state.err}</h1></div> );     
         }
         if(this.state.err && !this.state.lat) {
-            return <div>{showError}</div>;
+            return (<SeasonDisplay> {showError} </SeasonDisplay>);
         }
         if(!this.state.err && this.state.lat) {
-            return <div className="ui basic red green" > <h1>latitude : {this.state.lat}</h1></div> ;
+            return (<SeasonDisplay> lat={this.state.lat} </SeasonDisplay>);
         }
-        return <div>Loadaing, Please Wait!!!!!</div>;
+        return <Loader />;
     }
-}
+} 
 
 export default App;
